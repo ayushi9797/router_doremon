@@ -1,33 +1,28 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const cors = require("cors");
 const express = require("express");
-const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const { connection } = require("./config/db");
+const { auth } = require("./middlewares/auth.middleware");
 
 
-const { connection } = require("./config/config")
-const { UserModel } = require("./models/usermodel")
-const { PostModel } = require("./models/postschema")
-const {UserRouter } = require("./router/userrouter")
-const{PostRouter} = require("./router/postrouter")
-const { authenticate } = require("./middleware/authentication")
-
-
+const  cors=require("cors");
+const { postRouter } = require("./routes/post.router");
+const { userRouter } = require("./routes/users.router");
+require("dotenv").config();
+connection
 const app = express();
-app.use(cors({origin:"*"}));
+app.use(cors({origin:"*"}))
+app.use(express.json())
+app.use("/users",userRouter)
+app.use(auth)
+app.use("/posts",postRouter)
 
-app.use(express.json());
-app.use("/users", UserRouter);
-app.use(authenticate);
-app.use("/post",PostRouter)
-
-
-
-app.listen(process.env.port, async () => {
-  try {
-    await connection;
-    console.log(` congratulations connected to database successfully ${process.env.port}`);
-  } catch (err) {
-    console.log({ error: "error in connecting" });
-  }
-});
+app.listen(process.env.port,async()=>{
+    try {
+        await connection;
+        console.log("connected to db");
+        
+    } catch (error) {
+        console.log({message:error.message});
+    }
+    console.log("server has started")
+})

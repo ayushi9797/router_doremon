@@ -85,45 +85,45 @@ UserRouter.get("/about", (req, res) => {
 
 //! ============== GET DATA ============================
 
-UserRouter.get('/data', (req, res) => {
-    const token = req.headers.authorization;
-    console.log(token);
+// UserRouter.get('/data', (req, res) => {
+//     const token = req.headers.authorization;
+//     console.log(token);
 
-    jwt.verify(token, "todo", (err, decoded) => {
-        if (err) {
-            res.send("invalid token");
-            console.log(err);
-        } else {
-            res.send("data");
-        }
-    });
+//     jwt.verify(token, "todo", (err, decoded) => {
+//         if (err) {
+//             res.send("invalid token");
+//             console.log(err);
+//         } else {
+//             res.send("data");
+//         }
+//     });
 
-    console.log("WELCOME API data ");
+//     console.log("WELCOME API data ");
 
 
-})
+// })
 
 
 
 //! ======================= GET CART =======================
 
 
-UserRouter.get('/cart', (req, res) => {
-    const token = req.headers.authorization;
-    console.log(token);
+// UserRouter.get('/cart', (req, res) => {
+//     const token = req.headers.authorization;
+//     console.log(token);
 
-    jwt.verify(token, "todo", (err, decoded) => {
-        if (err) {
-            res.send("invalid token");
-            console.log(err);
-        } else {
-            res.send("cart page");
-        }
-    });
+//     jwt.verify(token, "todo", (err, decoded) => {
+//         if (err) {
+//             res.send("invalid token");
+//             console.log(err);
+//         } else {
+//             res.send("cart page");
+//         }
+//     });
 
-    console.log("WELCOME  cart router");
+//     console.log("WELCOME  cart router");
 
-})
+// })
 
 //! ======================= CONTACT ===========================================================================
 

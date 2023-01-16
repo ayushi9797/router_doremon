@@ -7,9 +7,9 @@ const jwt = require("jsonwebtoken");
 
 const { connection } = require("./config/config")
 const { UserModel } = require("./models/usermodel")
-const { TodoModel } = require("./models/todomodel")
-const { UserRouter } = require("./router/userrouter")
-const{todoRouter} = require("./router/todorouter")
+const { PostModel } = require("./models/postschema")
+const {UserRouter } = require("./router/userrouter")
+const{PostRouter} = require("./router/postrouter")
 const { authenticate } = require("./middleware/authentication")
 
 
@@ -17,9 +17,9 @@ const app = express();
 app.use(cors({origin:"*"}));
 
 app.use(express.json());
-app.use("/user", UserRouter);
+app.use("/users", UserRouter);
 app.use(authenticate);
-app.use("/todo",todoRouter)
+app.use("/post",PostRouter)
 
 
 
